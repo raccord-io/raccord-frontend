@@ -92,7 +92,8 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
             showUploadList={false}
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             beforeUpload={beforeUploadPicture}
-            onChange={handleChangePicture}>
+            onChange={handleChangePicture}
+          >
             {imageUrlPicture ? (
               <img src={imageUrlPicture} alt="avatar" style={{ width: '100%' }} />
             ) : (
