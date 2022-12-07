@@ -1,0 +1,38 @@
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.NavBar-logo {
+  height: 90%;
+  object-fit: cover;
+}
+
+.logo {
+  height: 100%;
+}
+
+.NavBar-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+}
+
+.NavBar-menu-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+}
+
+.NavBar-menu-item:hover {
+  color: #000;
+  text-decoration: underline;
+}
