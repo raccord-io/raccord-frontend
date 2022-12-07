@@ -5,7 +5,7 @@ import './index.css';
 
 import App from './App';
 import NavBarApp from './components/NavBarApp/NavBarApp';
-import Projects from './pages/Projects';
+import Projects from './pages/Projects/Projects';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
