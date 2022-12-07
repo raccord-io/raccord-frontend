@@ -3,7 +3,6 @@ name: Prettier Formatter
 # This action works with pull requests and pushes
 on:
   workflow_call:
-  workflow_dispatch:
   pull_request:
       branches: [main]
 
