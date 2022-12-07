@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css';
+import './NavBar.css';
 import { theme } from '../../constants/theme';
 import { Button } from 'antd';
 import logo from '../../assets/logo192.png';
