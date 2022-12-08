@@ -21,7 +21,8 @@ const SequenceCollapse: React.FC<Props> = (props: Props) => {
       bordered={false}
       defaultActiveKey={['1']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-      className="site-collapse-custom-collapse">
+      className="site-collapse-custom-collapse"
+    >
       {categoryInfos.map((item) => {
         return (
           <Panel header={item.category} key={item.category} className="site-collapse-custom-panel">
