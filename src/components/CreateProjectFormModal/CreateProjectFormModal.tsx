@@ -107,12 +107,14 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           .catch((info) => {
             console.log('Validate Failed:', info);
           });
-      }}>
+      }}
+    >
       <Form
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={{ modifier: 'public' }}>
+        initialValues={{ modifier: 'public' }}
+      >
         <div className="top-content">
           <div className="top-left-content">
             <Upload
@@ -122,7 +124,8 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
               showUploadList={false}
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               beforeUpload={beforeUploadPicture}
-              onChange={handleChangePicture}>
+              onChange={handleChangePicture}
+            >
               {imageUrlPicture ? (
                 <img src={imageUrlPicture} alt="avatar" style={{ width: '100%' }} />
               ) : (
@@ -133,7 +136,8 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           <div className="top-right-content">
             <Form.Item
               name="projectName"
-              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}>
+              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}
+            >
               <Input
                 prefix={<FileOutlined className="site-form-item-icon" />}
                 placeholder="Nom du Projet"
