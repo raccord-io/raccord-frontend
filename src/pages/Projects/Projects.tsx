@@ -1,10 +1,13 @@
 import './Projects.css';
 import { Button } from 'antd';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CreateProjectFormModal from '../../components/CreateProjectFormModal/CreateProjectFormModal';
 
 function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -12,6 +15,7 @@ function Projects() {
 
   const handleOk = () => {
     setIsModalOpen(false);
+    navigate('/project');
   };
 
   const handleCancel = () => {

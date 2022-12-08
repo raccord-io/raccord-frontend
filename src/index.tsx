@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import NavBarApp from './components/NavBarApp/NavBarApp';
 import Projects from './pages/Projects/Projects';
+import Project from './pages/Project/Project';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -19,6 +20,15 @@ const router = createBrowserRouter([
       <div>
         <NavBarApp />
         <Projects />
+      </div>
+    )
+  },
+  {
+    path: '/project',
+    element: (
+      <div>
+        <NavBarApp />
+        <Project />
       </div>
     )
   }
