@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './CreateProjectFormModal.css';
-import { Modal, Input, Form, message, Upload } from 'antd';
+
+import { LoadingOutlined, CameraOutlined, InboxOutlined, FileOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import type { UploadChangeParam } from 'antd/es/upload';
-import { LoadingOutlined, CameraOutlined, InboxOutlined, FileOutlined } from '@ant-design/icons';
+import { Modal, Input, Form, message, Upload } from 'antd';
 
 interface Props {
   isModalOpen: boolean;
@@ -11,7 +12,7 @@ interface Props {
   handleCancel: () => void;
 }
 
-const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handleCancel }) => {
+export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: Props) {
   const { TextArea } = Input;
   const [loadingPicture, setLoadingPicture] = useState<boolean>(false);
   const [imageUrlPicture, setImageUrlPicture] = useState<string>();
@@ -107,14 +108,12 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           .catch((info) => {
             console.log('Validate Failed:', info);
           });
-      }}
-    >
+      }}>
       <Form
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={{ modifier: 'public' }}
-      >
+        initialValues={{ modifier: 'public' }}>
         <div className="top-content">
           <div className="top-left-content">
             <Upload
@@ -124,8 +123,7 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
               showUploadList={false}
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               beforeUpload={beforeUploadPicture}
-              onChange={handleChangePicture}
-            >
+              onChange={handleChangePicture}>
               {imageUrlPicture ? (
                 <img src={imageUrlPicture} alt="avatar" style={{ width: '100%' }} />
               ) : (
@@ -136,8 +134,7 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           <div className="top-right-content">
             <Form.Item
               name="projectName"
-              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}
-            >
+              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}>
               <Input
                 prefix={<FileOutlined className="site-form-item-icon" />}
                 placeholder="Nom du Projet"
@@ -157,6 +154,4 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
       </Form>
     </Modal>
   );
-};
-
-export default CreateProjectFormModal;
+}

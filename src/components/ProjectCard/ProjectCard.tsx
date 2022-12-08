@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './Project-Card.css';
+import React from 'react';
+import './ProjectCard.css';
+
 import { Card } from 'antd';
 
 const { Meta } = Card;
@@ -10,14 +11,10 @@ type Props = {
   description: string;
 };
 
-class ProjectCard extends Component<Props> {
-  render() {
-    return (
-      <Card hoverable className="card" cover={<img alt="cover" src={this.props.picture} />}>
-        <Meta title={this.props.title} description={this.props.description} />
-      </Card>
-    );
-  }
+export function ProjectCard(props: Props) {
+  return (
+    <Card hoverable className="card" cover={<img alt="cover" src={props.picture} />}>
+      <Meta title={props.title} description={props.description} />
+    </Card>
+  );
 }
-
-export default ProjectCard;

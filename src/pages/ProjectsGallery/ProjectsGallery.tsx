@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import './Projects.css';
+import './ProjectsGallery.css';
 
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
-import CreateProjectFormModal from '../../components/CreateProjectFormModal/CreateProjectFormModal';
-import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import { ProjectCard, CreateProjectFormModal } from '../../components/index';
 
 import logo from '../../assets/images/logo192.png';
 
-function Projects() {
+function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -45,4 +44,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default ProjectsGallery;
