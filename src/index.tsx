@@ -1,15 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
 import './index.css';
 
 import App from './App';
+import ProjectsGallery from './pages/ProjectsGallery/ProjectsGallery';
+import Project from './pages/Project/Project';
+import reportWebVitals from './reportWebVitals';
+
+import { NavBarApp } from './components/index';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />
+  },
+  {
+    path: '/projects',
+    element: (
+      <div>
+        <NavBarApp />
+        <ProjectsGallery />
+      </div>
+    )
+  },
+  {
+    path: '/project',
+    element: (
+      <div>
+        <NavBarApp />
+        <Project />
+      </div>
+    )
   }
 ]);
 
