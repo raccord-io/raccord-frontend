@@ -4,10 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import App from './App';
-import NavBarApp from './components/NavBarApp/NavBarApp';
-import Projects from './pages/Projects/Projects';
+import ProjectsGallery from './pages/ProjectsGallery/ProjectsGallery';
 import Project from './pages/Project/Project';
 import reportWebVitals from './reportWebVitals';
+
+import { NavBarApp } from './components/index';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     element: (
       <div>
         <NavBarApp />
-        <Projects />
+        <ProjectsGallery />
       </div>
     )
   },

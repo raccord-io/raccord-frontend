@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './NavBarApp.css';
 import { theme } from '../../constants/theme';
-import logo from '../../assets/logo192.png';
-import type { MenuProps } from 'antd';
+
 import { Button, Dropdown } from 'antd';
+import type { MenuProps } from 'antd';
+
+import logo from '../../assets/images/logo192.png';
 
 const items: MenuProps['items'] = [
   {
@@ -36,24 +38,20 @@ const items: MenuProps['items'] = [
   }
 ];
 
-class NavBarApp extends Component {
-  render(): React.ReactNode {
-    return (
-      <div className="NavBar" style={{ backgroundColor: theme.palette.primary }}>
-        <div className="NavBar-logo">
-          <img className="logo" src={logo} alt="Fast Clap logo" />
-        </div>
-        {/* <div className="NavBar-menu">
-          <a className="NavBar-menu-item" href="#">
-            Projets
-          </a>
-        </div> */}
-        <Dropdown menu={{ items }} placement="bottomRight" arrow trigger={['click']}>
-          <Button>Clément</Button>
-        </Dropdown>
+export function NavBarApp() {
+  return (
+    <div className="NavBar" style={{ backgroundColor: theme.palette.primary }}>
+      <div className="NavBar-logo">
+        <img className="logo" src={logo} alt="Fast Clap logo" />
       </div>
-    );
-  }
+      {/* <div className="NavBar-menu">
+        <a className="NavBar-menu-item" href="#">
+          Projets
+        </a>
+      </div> */}
+      <Dropdown menu={{ items }} placement="bottomRight" arrow trigger={['click']}>
+        <Button>Clément</Button>
+      </Dropdown>
+    </div>
+  );
 }
-
-export default NavBarApp;
