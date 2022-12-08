@@ -63,6 +63,9 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
   );
 
   /* For the upload of the script */
+
+  const types = ['application/pdf'];
+
   const props: UploadProps = {
     name: 'file',
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -107,14 +110,12 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           .catch((info) => {
             console.log('Validate Failed:', info);
           });
-      }}
-    >
+      }}>
       <Form
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={{ modifier: 'public' }}
-      >
+        initialValues={{ modifier: 'public' }}>
         <div className="top-content">
           <div className="top-left-content">
             <Upload
@@ -124,8 +125,7 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
               showUploadList={false}
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               beforeUpload={beforeUploadPicture}
-              onChange={handleChangePicture}
-            >
+              onChange={handleChangePicture}>
               {imageUrlPicture ? (
                 <img src={imageUrlPicture} alt="avatar" style={{ width: '100%' }} />
               ) : (
@@ -136,8 +136,7 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           <div className="top-right-content">
             <Form.Item
               name="projectName"
-              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}
-            >
+              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}>
               <Input
                 prefix={<FileOutlined className="site-form-item-icon" />}
                 placeholder="Nom du Projet"
@@ -147,7 +146,19 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
           </div>
         </div>
         <div className="bottom-content">
-          <Dragger {...props} maxCount={1}>
+          <Dragger
+            {...props}
+            maxCount={1}
+            showUploadList={false}
+            accept=".pdf"
+            beforeUpload={(file) => {
+              if (!types.includes(file.type)) {
+                message.error(`${file.name} is not a pdf file`);
+                return false;
+              } else {
+                return true;
+              }
+            }}>
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
