@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './CreateProjectFormModal.css';
-import { Modal, Input, Form, message, Upload } from 'antd';
+
+import { LoadingOutlined, CameraOutlined, InboxOutlined, FileOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import type { UploadChangeParam } from 'antd/es/upload';
-import { LoadingOutlined, CameraOutlined, InboxOutlined, FileOutlined } from '@ant-design/icons';
+import { Modal, Input, Form, message, Upload } from 'antd';
 
 interface Props {
   isModalOpen: boolean;
@@ -11,7 +12,7 @@ interface Props {
   handleCancel: () => void;
 }
 
-const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handleCancel }) => {
+export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: Props) {
   const { TextArea } = Input;
   const [loadingPicture, setLoadingPicture] = useState<boolean>(false);
   const [imageUrlPicture, setImageUrlPicture] = useState<string>();
@@ -157,6 +158,4 @@ const CreateProjectFormModal: React.FC<Props> = ({ isModalOpen, handleOk, handle
       </Form>
     </Modal>
   );
-};
-
-export default CreateProjectFormModal;
+}
