@@ -1,4 +1,6 @@
 import React from 'react';
+import './SequenceCollapse.css';
+
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
@@ -12,7 +14,7 @@ const categoryInfos = [
   { category: 'Accessoire', tags: ['Boule', 'Ballon'] }
 ];
 
-const SequenceCollapse: React.FC<Props> = (props: Props) => {
+export function SequenceCollapse(props: Props) {
   const { Panel } = Collapse;
 
   return (
@@ -21,8 +23,7 @@ const SequenceCollapse: React.FC<Props> = (props: Props) => {
       bordered={false}
       defaultActiveKey={['1']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-      className="site-collapse-custom-collapse"
-    >
+      className="site-collapse-custom-collapse">
       {categoryInfos.map((item) => {
         return (
           <Panel header={item.category} key={item.category} className="site-collapse-custom-panel">
@@ -34,6 +35,4 @@ const SequenceCollapse: React.FC<Props> = (props: Props) => {
       })}
     </Collapse>
   );
-};
-
-export default SequenceCollapse;
+}

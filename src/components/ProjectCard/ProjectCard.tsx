@@ -5,11 +5,11 @@ import { Card } from 'antd';
 
 const { Meta } = Card;
 
-type Props = {
+interface Props {
   picture: string;
   title: string;
   description: string;
-};
+}
 
 export function ProjectCard(props: Props) {
   return (
@@ -20,8 +20,7 @@ export function ProjectCard(props: Props) {
         <div className="container-img">
           <img alt="cover" className="filmPicture" src={props.picture} />
         </div>
-      }
-    >
+      }>
       <Meta title={props.title} description={props.description} />
     </Card>
   );

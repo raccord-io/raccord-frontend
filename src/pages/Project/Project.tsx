@@ -1,6 +1,7 @@
 import React from 'react';
 import './Project.css';
-import SequencesCollapse from '../../components/SequencesCollapse/SequencesCollapse';
+
+import { SequencesCollapse } from '../../components';
 
 function Project() {
   return (
