@@ -64,6 +64,9 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
   );
 
   /* For the upload of the script */
+
+  const types = ['application/pdf'];
+
   const props: UploadProps = {
     name: 'file',
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -144,7 +147,20 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
           </div>
         </div>
         <div className="bottom-content">
-          <Dragger {...props} maxCount={1}>
+          <Dragger
+            {...props}
+            maxCount={1}
+            showUploadList={false}
+            accept=".pdf"
+            beforeUpload={(file) => {
+              if (!types.includes(file.type)) {
+                message.error(`${file.name} is not a pdf file`);
+                return false;
+              } else {
+                return true;
+              }
+            }}
+          >
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
