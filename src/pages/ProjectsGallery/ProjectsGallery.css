@@ -1,4 +1,4 @@
-.header {
+.project-gallery .header {
   flex-direction: row;
   padding: 50px;
   height: 50px;
@@ -6,4 +6,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.project-gallery {
+  padding: 0 45px;
+}
+
+.project-gallery .gallery {
+  padding: 0;
+
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, fit-content(100%));
+  grid-gap: 110px 139px;
 }

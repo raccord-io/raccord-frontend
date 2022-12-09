@@ -1,6 +1,5 @@
 .card {
   padding: 20px;
-
   width: 100%;
   max-width: 410px;
 
@@ -24,4 +23,17 @@
   color: black;
   font-style: normal;
   font-weight: 400;
+}
+
+.container-img {
+  width: 368px !important;
+  height: 256px;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-img .filmPicture {
+  border-radius: 10px;
 }
