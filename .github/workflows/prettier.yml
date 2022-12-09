@@ -28,4 +28,5 @@ jobs:
         uses: creyD/prettier_action@v4.2
         with:
           commit_message: "Code Indented!"
-          prettier_options: --write **/*.{js,css,html,json,ts,tsx,jsx}
+          prettier_options:
+            --config .prettierrc
