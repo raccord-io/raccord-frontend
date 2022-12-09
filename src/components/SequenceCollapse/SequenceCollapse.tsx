@@ -1,4 +1,6 @@
 import React from 'react';
+import './SequenceCollapse.css';
+
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
@@ -12,7 +14,7 @@ const categoryInfos = [
   { category: 'Accessoire', tags: ['Boule', 'Ballon'] }
 ];
 
-const SequenceCollapse: React.FC<Props> = (props: Props) => {
+export function SequenceCollapse(props: Props) {
   const { Panel } = Collapse;
 
   return (
@@ -34,6 +36,4 @@ const SequenceCollapse: React.FC<Props> = (props: Props) => {
       })}
     </Collapse>
   );
-};
-
-export default SequenceCollapse;
+}

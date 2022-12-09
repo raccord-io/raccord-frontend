@@ -1,9 +1,12 @@
 import React from 'react';
+import './SequencesCollapse.css';
+
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import SequenceCollapse from '../SequenceCollapse/SequenceCollapse';
 
-const SequencesCollapse: React.FC = () => {
+import { SequenceCollapse } from '../index';
+
+export function SequencesCollapse() {
   const { Panel } = Collapse;
 
   const sequencesName = [
@@ -43,6 +46,4 @@ const SequencesCollapse: React.FC = () => {
       {sequences}
     </Collapse>
   );
-};
-
-export default SequencesCollapse;
+}
