@@ -159,8 +159,7 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
               } else {
                 return true;
               }
-            }}
-          >
+            }}>
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
