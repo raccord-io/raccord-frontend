@@ -108,14 +108,12 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
           .catch((info) => {
             console.log('Validate Failed:', info);
           });
-      }}
-    >
+      }}>
       <Form
         form={form}
         layout="vertical"
         name="form_in_modal"
-        initialValues={{ modifier: 'public' }}
-      >
+        initialValues={{ modifier: 'public' }}>
         <div className="top-content">
           <div className="top-left-content">
             <Upload
@@ -125,8 +123,7 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
               showUploadList={false}
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               beforeUpload={beforeUploadPicture}
-              onChange={handleChangePicture}
-            >
+              onChange={handleChangePicture}>
               {imageUrlPicture ? (
                 <img src={imageUrlPicture} alt="avatar" style={{ width: '100%' }} />
               ) : (
@@ -137,8 +134,7 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
           <div className="top-right-content">
             <Form.Item
               name="projectName"
-              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}
-            >
+              rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}>
               <Input
                 prefix={<FileOutlined className="site-form-item-icon" />}
                 placeholder="Nom du Projet"
