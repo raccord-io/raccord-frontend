@@ -4,6 +4,8 @@ import './ProjectsGallery.css';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
+import { useProjectsQuery } from '../../services/projectApi';
+
 import { ProjectCard, CreateProjectFormModal } from '../../components';
 
 import logo from '../../assets/images/logo192.png';
@@ -11,6 +13,8 @@ import landscape from '../../assets/images/landscape.svg';
 
 function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data, isLoading, isError } = useProjectsQuery();
 
   const navigate = useNavigate();
 

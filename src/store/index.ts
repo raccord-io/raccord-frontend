@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-const rootReducer = combineReducers({});
+import { projectsApi } from '../services/projectApi';
 
-export const store = configureStore({ reducer: rootReducer });
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const store = configureStore({
+  reducer: {
+    [projectsApi.reducerPath]: projectsApi.reducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectsApi.middleware)
+});
