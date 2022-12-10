@@ -41,8 +41,7 @@ export function SequencesCollapse() {
       bordered={false}
       defaultActiveKey={['1']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-      className="site-collapse-custom-collapse"
-    >
+      className="site-collapse-custom-collapse">
       {sequences}
     </Collapse>
   );
