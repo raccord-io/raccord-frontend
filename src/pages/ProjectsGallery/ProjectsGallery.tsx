@@ -58,7 +58,7 @@ function ProjectsGallery() {
           handleCancel={handleCancel}
         />
       </div>
-      <ul className="gallery">
+      <div className="gallery">
         {projects.map((project, key) => (
           <ProjectCard
             picture={project.picture}
@@ -67,7 +67,7 @@ function ProjectsGallery() {
             key={key}
           />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
