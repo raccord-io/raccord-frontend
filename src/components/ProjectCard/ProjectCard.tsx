@@ -26,7 +26,8 @@ export function ProjectCard(props: Props) {
         onClick={handleClick}
         hoverable
         className="card"
-        cover={<img alt="cover" className="filmPicture" src={props.picture} />}>
+        cover={<img alt="cover" className="filmPicture" src={props.picture} />}
+      >
         <Meta className="description" title={props.title} description={props.description} />
       </Card>
     </div>
