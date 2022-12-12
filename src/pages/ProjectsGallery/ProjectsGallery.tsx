@@ -16,6 +16,8 @@ function ProjectsGallery() {
 
   const { data, isLoading, isError } = useProjectsQuery();
 
+  console.log(data);
+
   const navigate = useNavigate();
 
   const showModal = () => {
@@ -63,10 +65,10 @@ function ProjectsGallery() {
         />
       </div>
       <div className="gallery">
-        {projects.map((project, key) => (
+        {data?.map((project, key) => (
           <ProjectCard
-            picture={project.picture}
-            title={project.title}
+            picture={project.name}
+            title={project.name}
             description={project.description}
             key={key}
           />

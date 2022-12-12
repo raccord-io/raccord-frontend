@@ -1,10 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Project } from '../models/projectModel';
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
+console.log(API_ENDPOINT);
+
 export const projectsApi = createApi({
   reducerPath: 'projectsApi',
   tagTypes: ['Project'],
-  baseQuery: fetchBaseQuery({ baseUrl: '' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${API_ENDPOINT}`
+  }),
   endpoints: (builder) => ({
     projects: builder.query<Project[], void>({
       query: () => '/project',
