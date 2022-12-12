@@ -12,13 +12,20 @@
   padding: 0 45px;
 }
 
-.project-gallery .gallery {
+.project-gallery .gallery-list {
   padding: 0;
+  width: 100%;
 
   display: grid;
   justify-items: center;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   grid-template-columns: repeat(3, fit-content(100%));
-  grid-gap: 110px 139px;
+  grid-gap: 11.5vh 7.2vw;
+}
+
+@media (width < 1150px) {
+  .project-gallery .gallery-list {
+    grid-template-columns: repeat(2, fit-content(100%));
+  }
 }

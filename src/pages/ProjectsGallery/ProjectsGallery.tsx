@@ -6,7 +6,6 @@ import { Button } from 'antd';
 
 import { ProjectCard, CreateProjectFormModal } from '../../components';
 
-import logo from '../../assets/images/logo192.png';
 import landscape from '../../assets/images/landscape.svg';
 
 function ProjectsGallery() {
@@ -29,19 +28,28 @@ function ProjectsGallery() {
 
   const projects = [
     {
-      picture: logo,
+      picture: landscape,
       title: 'Project 1',
-      description: 'Description 1'
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
     },
     {
       picture: landscape,
       title: 'Project 2',
-      description: 'Description 2'
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
     },
     {
-      picture: logo,
+      picture: landscape,
       title: 'Project 3',
-      description: 'Description 3'
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+    },
+    {
+      picture: landscape,
+      title: 'Project 4',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
     }
   ];
 
@@ -58,7 +66,8 @@ function ProjectsGallery() {
           handleCancel={handleCancel}
         />
       </div>
-      <ul className="gallery">
+
+      <ul className="gallery-list">
         {projects.map((project, key) => (
           <ProjectCard
             picture={project.picture}
