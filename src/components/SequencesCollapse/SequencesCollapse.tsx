@@ -27,7 +27,7 @@ export function SequencesCollapse() {
     <>
       {sequencesName.map((item) => {
         return (
-          <Panel header={item.name} key={item.id}>
+          <Panel header={item.name} key={item.id} className="site-collapse-custom-collapse">
             <SequenceCollapse content={categoriesName} keyId={'1'} />
           </Panel>
         );
@@ -37,12 +37,12 @@ export function SequencesCollapse() {
 
   return (
     <Collapse
+      accordion
       key={'1'}
       bordered={false}
       defaultActiveKey={['1']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-      className="site-collapse-custom-collapse"
-    >
+      className="site-collapse-custom-collapse">
       {sequences}
     </Collapse>
   );

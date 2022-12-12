@@ -1,0 +1,7 @@
+[data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  overflow: hidden;
+  background: #e1dede;
+  border: 0px !important;
+  border-radius: 2px;
+}
