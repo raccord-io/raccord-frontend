@@ -4,7 +4,7 @@ import { theme } from '../../constants/theme';
 
 import { Button } from 'antd';
 
-import logo from '../../assets/images/logo192.png';
+import logo from '../../assets/images/logo.png';
 
 export function NavBar() {
   return (
