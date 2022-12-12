@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './CreateProjectFormModal.css';
 
 import { LoadingOutlined, CameraOutlined, InboxOutlined, FileOutlined } from '@ant-design/icons';
@@ -8,7 +8,7 @@ import { Modal, Input, Form, message, Upload } from 'antd';
 
 interface Props {
   isModalOpen: boolean;
-  handleOk: () => void;
+  handleOk: (value: any) => void;
   handleCancel: () => void;
 }
 
@@ -104,9 +104,9 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
       onOk={() => {
         form
           .validateFields()
-          .then(() => {
+          .then((values) => {
+            handleOk(values);
             form.resetFields();
-            handleOk();
           })
           .catch((info) => {
             console.log('Validate Failed:', info);
@@ -136,14 +136,16 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
           </div>
           <div className="top-right-content">
             <Form.Item
-              name="projectName"
+              name="name"
               rules={[{ required: true, message: 'Veuillez entrer un nom de projet!' }]}>
               <Input
                 prefix={<FileOutlined className="site-form-item-icon" />}
                 placeholder="Nom du Projet"
               />
             </Form.Item>
-            <TextArea style={{ height: '100%' }} rows={4} placeholder="Description" />
+            <Form.Item name="description" rules={[{ required: false }]}>
+              <TextArea style={{ height: '100%' }} rows={4} placeholder="Description" />
+            </Form.Item>
           </div>
         </div>
         <div className="bottom-content">

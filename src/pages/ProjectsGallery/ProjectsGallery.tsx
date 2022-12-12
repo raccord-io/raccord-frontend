@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './ProjectsGallery.css';
 
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
 import { useProjectsQuery } from '../../services/projectApi';
+import { useAddProjectMutation } from '../../services/projectApi';
 
 import { ProjectCard, CreateProjectFormModal } from '../../components';
 
@@ -15,6 +16,7 @@ function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading, isError } = useProjectsQuery();
+  const [addProject, { isLoading: isAdding }] = useAddProjectMutation();
 
   console.log(data);
 
@@ -24,9 +26,11 @@ function ProjectsGallery() {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = (value: any) => {
     setIsModalOpen(false);
     navigate('/project');
+    console.log('New project created', value);
+    addProject(value);
   };
 
   const handleCancel = () => {
