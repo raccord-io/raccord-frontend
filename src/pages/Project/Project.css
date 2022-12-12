@@ -18,15 +18,32 @@
   justify-content: space-between;
 }
 
-.pages {
+.script-pages-previews {
   flex-direction: column;
   width: 10%;
   justify-content: space-between;
 }
 
-.text {
+.script-container {
   flex-direction: column;
   width: 70%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.script-page {
+  font-family: 'Courier Prime', monospace;
+  flex-direction: column;
+  width: 90%;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  min-height: 30vh;
+}
+
+.script-text-container {
+  flex-direction: row;
+  padding: 7%;
   justify-content: space-between;
 }
 
