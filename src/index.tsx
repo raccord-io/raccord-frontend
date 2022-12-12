@@ -1,44 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+import reportWebVitals from './reportWebVitals';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 import App from './App';
-import ProjectsGallery from './pages/ProjectsGallery/ProjectsGallery';
-import Project from './pages/Project/Project';
-import reportWebVitals from './reportWebVitals';
-
-import { NavBarApp } from './components/index';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />
-  },
-  {
-    path: '/projects',
-    element: (
-      <div>
-        <NavBarApp />
-        <ProjectsGallery />
-      </div>
-    )
-  },
-  {
-    path: '/project',
-    element: (
-      <div>
-        <NavBarApp />
-        <Project />
-      </div>
-    )
-  }
-]);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

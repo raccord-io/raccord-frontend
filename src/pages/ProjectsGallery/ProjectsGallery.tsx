@@ -4,12 +4,16 @@ import './ProjectsGallery.css';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
-import { ProjectCard, CreateProjectFormModal } from '../../components';
+import { useProjectsQuery } from '../../services/projectApi';
 
-import landscape from '../../assets/images/landscape.svg';
+import { ProjectCard, CreateProjectFormModal } from '../../components';
 
 function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data, isLoading, isError } = useProjectsQuery();
+
+  console.log(data);
 
   const navigate = useNavigate();
 
@@ -26,33 +30,6 @@ function ProjectsGallery() {
     setIsModalOpen(false);
   };
 
-  const projects = [
-    {
-      picture: landscape,
-      title: 'Project 1',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-    },
-    {
-      picture: landscape,
-      title: 'Project 2',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-    },
-    {
-      picture: landscape,
-      title: 'Project 3',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-    },
-    {
-      picture: landscape,
-      title: 'Project 4',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-    }
-  ];
-
   return (
     <div className="project-gallery">
       <div className="header">
@@ -66,17 +43,16 @@ function ProjectsGallery() {
           handleCancel={handleCancel}
         />
       </div>
-
-      <ul className="gallery-list">
-        {projects.map((project, key) => (
+      <div className="gallery-list">
+        {data?.map((project, key) => (
           <ProjectCard
-            picture={project.picture}
-            title={project.title}
+            picture={project.name}
+            title={project.name}
             description={project.description}
             key={key}
           />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
