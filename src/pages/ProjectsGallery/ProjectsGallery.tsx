@@ -8,9 +8,6 @@ import { useProjectsQuery } from '../../services/projectApi';
 
 import { ProjectCard, CreateProjectFormModal } from '../../components';
 
-import logo from '../../assets/images/logo192.png';
-import landscape from '../../assets/images/landscape.svg';
-
 function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,24 +30,6 @@ function ProjectsGallery() {
     setIsModalOpen(false);
   };
 
-  const projects = [
-    {
-      picture: logo,
-      title: 'Project 1',
-      description: 'Description 1'
-    },
-    {
-      picture: landscape,
-      title: 'Project 2',
-      description: 'Description 2'
-    },
-    {
-      picture: logo,
-      title: 'Project 3',
-      description: 'Description 3'
-    }
-  ];
-
   return (
     <div className="project-gallery">
       <div className="header">
@@ -64,7 +43,7 @@ function ProjectsGallery() {
           handleCancel={handleCancel}
         />
       </div>
-      <div className="gallery">
+      <div className="gallery-list">
         {data?.map((project, key) => (
           <ProjectCard
             picture={project.name}
