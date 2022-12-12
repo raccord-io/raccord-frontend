@@ -13,15 +13,13 @@ interface Props {
 
 export function ProjectCard(props: Props) {
   return (
-    <Card
-      hoverable
-      className="card"
-      cover={
-        <div className="container-img">
-          <img alt="cover" className="filmPicture" src={props.picture} />
-        </div>
-      }>
-      <Meta title={props.title} description={props.description} />
-    </Card>
+    <div className="project-card-container">
+      <Card
+        hoverable
+        className="card"
+        cover={<img alt="cover" className="filmPicture" src={props.picture} />}>
+        <Meta className="description" title={props.title} description={props.description} />
+      </Card>
+    </div>
   );
 }
