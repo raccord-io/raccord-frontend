@@ -5,7 +5,7 @@ import { theme } from '../../constants/theme';
 import { Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 
-import logo from '../../assets/images/logo192.png';
+import logo from '../../assets/images/logo.png';
 
 const items: MenuProps['items'] = [
   {
