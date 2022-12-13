@@ -149,13 +149,16 @@ export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handl
           </div>
         </div>
         <div className="bottom-content">
-          <Form.Item name="pdf" rules={[{ required: true }]} valuePropName="filelist">
+          <Form.Item
+            name="pdf"
+            rules={[{ required: true, message: 'Veuillez rentrer un scénario!' }]}
+            valuePropName="filelist">
             <Dragger {...props}>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
-              <p className="ant-upload-text">Click or drag file to this area to upload</p>
-              <p className="ant-upload-hint">Supported file types: .pdf</p>
+              <p className="ant-upload-text">Cliquez ou faites glisser votre scénario ici</p>
+              <p className="ant-upload-hint">Types de fichiers pris en charge : .pdf</p>
             </Dragger>
           </Form.Item>
         </div>
