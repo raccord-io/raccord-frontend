@@ -5,6 +5,7 @@ import { useProjectQuery } from '../../services/projectApi';
 import parse from 'html-react-parser';
 import { Button, UploadProps, message, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { Empty } from 'antd';
 
 import { SequencesCollapse } from '../../components';
 import { ScriptContainer } from '../../components/ScriptContainer/ScriptContainer';
@@ -58,11 +59,15 @@ function Project() {
       <div className="columns">
         <div className="script-pages-previews"></div>
         <div className="script-container">
-          <ScriptContainer
-            content={text}
-            projectId={projectId!}
-            currentSequenceSelected={currentSequenceSelected}
-          />
+          {data?.html ? (
+            <ScriptContainer
+              content={text}
+              projectId={projectId!}
+              currentSequenceSelected={currentSequenceSelected}
+            />
+          ) : (
+            <Empty description={'Veuillez uploader un scénario'} />
+          )}
         </div>
         <div className="collapse">
           <SequencesCollapse />
