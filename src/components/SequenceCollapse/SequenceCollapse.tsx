@@ -5,7 +5,6 @@ import { Collapse, Tag } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 
 interface Props {
-  content: Array<{ header: string; key: string }>;
   keyId: string;
 }
 

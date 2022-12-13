@@ -1,6 +1,6 @@
 import React from 'react';
 import './Project.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useProjectQuery } from '../../services/projectApi';
 
 import { SequencesCollapse } from '../../components';
