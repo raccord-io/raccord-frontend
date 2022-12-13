@@ -2,22 +2,59 @@ import React, { useState } from 'react';
 import './Project.css';
 import { useParams } from 'react-router-dom';
 import { useProjectQuery } from '../../services/projectApi';
+import parse from 'html-react-parser';
+import { Button, UploadProps, message, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 import { SequencesCollapse } from '../../components';
 import { ScriptContainer } from '../../components/ScriptContainer/ScriptContainer';
-
-const text =
-  'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?';
 
 function Project() {
   const { projectId } = useParams();
   const { data, isLoading, isError } = useProjectQuery(projectId!);
 
+  const types = ['application/pdf'];
+
+  const props: UploadProps = {
+    maxCount: 1,
+    accept: '.pdf',
+    name: 'file',
+    action: `http://localhost:3000/${projectId}/upload`,
+    showUploadList: false,
+    headers: {
+      authorization: 'authorization-text'
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    }
+  };
+
+  const text = parse(data?.html ? data?.html : '');
+
+  const addScript = () => {
+    // if (!data?.html) {
+    return (
+      <Upload {...props}>
+        <Button icon={<UploadOutlined />}>Ajouter un scénario</Button>
+      </Upload>
+    );
+    // }
+  };
   const [currentSequenceSelected, setCurrentSequenceSelected] = useState<string>('');
 
   return (
     <div className="main-container">
-      <div className="header-page-project"></div>
+      <div className="header-page-project">
+        <h1>{data?.name}</h1>
+        {addScript()}
+      </div>
       <div className="columns">
         <div className="script-pages-previews"></div>
         <div className="script-container">
@@ -31,6 +68,7 @@ function Project() {
           <SequencesCollapse />
         </div>
       </div>
+      <div className="footer-page-project"></div>
     </div>
   );
 }

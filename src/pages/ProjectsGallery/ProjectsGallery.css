@@ -1,7 +1,7 @@
 .project-gallery .header {
   flex-direction: row;
   padding: 50px;
-  height: 50px;
+  height: 7vh;
 
   display: flex;
   justify-content: space-between;
