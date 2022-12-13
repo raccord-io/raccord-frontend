@@ -6,6 +6,7 @@ import { Button } from 'antd';
 
 import { useProjectsQuery } from '../../services/projectApi';
 import { useAddProjectMutation } from '../../services/projectApi';
+import { useAddFileMutation } from '../../services/projectApi';
 import asset from '../../assets/images/image.png';
 
 import { ProjectCard, CreateProjectFormModal } from '../../components';
@@ -15,6 +16,7 @@ function ProjectsGallery() {
 
   const { data, isLoading, isError } = useProjectsQuery();
   const [addProject, { isLoading: isAdding }] = useAddProjectMutation();
+  const [addFile, { isLoading: isAddingFile }] = useAddFileMutation();
 
   console.log(data);
 
@@ -26,9 +28,10 @@ function ProjectsGallery() {
 
   const handleOk = (value: any) => {
     setIsModalOpen(false);
-    navigate('/project');
     console.log('New project created', value);
     addProject(value);
+    addFile(value);
+    // navigate('/projects' + 'id');
   };
 
   const handleCancel = () => {

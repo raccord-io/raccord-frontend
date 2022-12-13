@@ -149,24 +149,26 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
           </div>
         </div>
         <div className="bottom-content">
-          <Dragger
-            {...props}
-            maxCount={1}
-            showUploadList={false}
-            accept=".pdf"
-            beforeUpload={(file) => {
-              if (!types.includes(file.type)) {
-                message.error(`${file.name} is not a pdf file`);
-                return false;
-              } else {
-                return true;
-              }
-            }}>
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">{fileUploaded}</p>
-          </Dragger>
+          <Form.Item name="script" rules={[{ required: false }]}>
+            <Dragger
+              {...props}
+              maxCount={1}
+              showUploadList={false}
+              accept=".pdf"
+              beforeUpload={(file) => {
+                if (!types.includes(file.type)) {
+                  message.error(`${file.name} is not a pdf file`);
+                  return false;
+                } else {
+                  return true;
+                }
+              }}>
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">{fileUploaded}</p>
+            </Dragger>
+          </Form.Item>
         </div>
       </Form>
     </Modal>

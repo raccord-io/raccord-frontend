@@ -6,6 +6,9 @@
   padding: 0 20px;
   height: 7vh;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0px;
+  z-index: 1;
 }
 
 .NavBar-logo {
