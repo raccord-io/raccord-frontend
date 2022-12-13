@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -5,9 +7,12 @@ import { useEffect } from 'react';
 import { Modal } from 'antd';
 import { Radio } from 'antd';
 
+import { Tag } from '../../models/tagModel';
+
 const rangy = require('rangy');
 
 import { v4 as uuid } from 'uuid';
+import { useAddTagMutation } from '../../services/projectApi';
 
 import 'rangy/lib/rangy-classapplier';
 import 'rangy/lib/rangy-highlighter';
@@ -17,6 +22,8 @@ import './ScriptContainer.css';
 
 interface Props {
   content: any;
+  projectId: string;
+  currentSequenceSelected: string;
 }
 
 export const mapCategoryToClass = new Map([
@@ -25,12 +32,14 @@ export const mapCategoryToClass = new Map([
   ['Accessoires', 'highlightGreen']
 ]);
 
-export const ScriptContainer = ({ content }: Props) => {
+export const ScriptContainer = ({ content, projectId, currentSequenceSelected }: Props) => {
   const [highlighter, setHighlighter] = useState(rangy.createHighlighter);
   const [openModalCategory, setOpenModalCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [currentHighlightedSelection, setCurrentHighlightedSelection] = useState();
   const [currentIdToDelete, setCurrentIdToDelete] = useState<string | undefined>('');
+
+  const [addTag] = useAddTagMutation();
 
   // Use effect to initialize the highlighter
   useEffect(() => {
@@ -105,7 +114,16 @@ export const ScriptContainer = ({ content }: Props) => {
   const onOkModalCategory = () => {
     rangy.restoreSelection(currentHighlightedSelection, true);
     highlighter.highlightSelection(mapCategoryToClass.get(selectedCategory));
+    const sel = window.getSelection();
+    const id = sel?.getRangeAt(0).commonAncestorContainer.parentElement?.id;
     setOpenModalCategory(false);
+    const tag: Tag = {
+      text: window.getSelection()?.toString()!,
+      sequenceId: currentSequenceSelected,
+      categoryId: selectedCategory,
+      uuid: id!
+    };
+    addTag({ projectId, tag });
   };
 
   const onChangeRadioButton = (value: any) => {
