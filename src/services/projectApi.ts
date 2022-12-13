@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Project } from '../models/projectModel';
+import { Tag } from '../models/tagModel';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
@@ -7,7 +8,7 @@ console.log(API_ENDPOINT);
 
 export const projectsApi = createApi({
   reducerPath: 'projectsApi',
-  tagTypes: ['Project'],
+  tagTypes: ['Project', 'Tag'],
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_ENDPOINT}`
   }),
@@ -40,6 +41,17 @@ export const projectsApi = createApi({
     getSequence: builder.query<Project[], { projectId: string; sequenceId: string }>({
       query: ({ projectId, sequenceId }) => `/project/${projectId}/sequence/${sequenceId}`,
       providesTags: ['Project']
+    }),
+    addTag: builder.mutation<void, { projectId: string; tag: Tag }>({
+      query: ({ projectId, tag }) => ({
+        url: `project/${projectId}/tag`,
+        method: 'POST',
+        body: tag
+      }),
+      invalidatesTags: ['Project', 'Tag']
+    }),
+    deleteTag: builder.mutation<void, { projectId: string; tagId: string }>({
+      query: ({ projectId, tagId }) => ({ url: `/project/${projectId}/${tagId}`, method: 'DELETE' })
     })
   })
 });
@@ -50,5 +62,6 @@ export const {
   useAddProjectMutation,
   useAddFileQuery,
   useGetSequencesQuery,
-  useGetSequenceQuery
+  useGetSequenceQuery,
+  useAddTagMutation
 } = projectsApi;
