@@ -29,6 +29,10 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: ['Project']
     }),
+    addFile: builder.query<Project[], string>({
+      query: (projectId) => `/project/${projectId}/upload`,
+      providesTags: ['Project']
+    }),
     getSequences: builder.query<Project[], string>({
       query: (projectId) => `/project/${projectId}/sequence`,
       providesTags: ['Project']
@@ -40,5 +44,11 @@ export const projectsApi = createApi({
   })
 });
 
-export const { useProjectsQuery, useProjectQuery, useAddProjectMutation, useGetSequencesQuery } =
-  projectsApi;
+export const {
+  useProjectsQuery,
+  useProjectQuery,
+  useAddProjectMutation,
+  useAddFileQuery,
+  useGetSequencesQuery,
+  useGetSequenceQuery
+} = projectsApi;

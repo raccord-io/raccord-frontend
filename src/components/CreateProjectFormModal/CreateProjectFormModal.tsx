@@ -63,35 +63,35 @@ export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handl
 
   const types = ['application/pdf'];
 
-  const props: UploadProps = {
-    maxCount: 1,
-    accept: '.pdf',
-    name: 'file',
-    headers: {
-      authorization: 'authorization-text'
-    },
-    beforeUpload(file) {
-      if (!types.includes(file.type)) {
-        message.error(`${file.name} is not a pdf file`);
-        return false;
-      } else {
-        return false;
-      }
-    },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log('Dropped files', e.dataTransfer.files);
-    }
-  };
+  // const props: UploadProps = {
+  //   maxCount: 1,
+  //   accept: '.pdf',
+  //   name: 'file',
+  //   headers: {
+  //     authorization: 'authorization-text'
+  //   },
+  //   beforeUpload(file) {
+  //     if (!types.includes(file.type)) {
+  //       message.error(`${file.name} is not a pdf file`);
+  //       return false;
+  //     } else {
+  //       return false;
+  //     }
+  //   },
+  //   onChange(info) {
+  //     if (info.file.status !== 'uploading') {
+  //       console.log(info.file, info.fileList);
+  //     }
+  //     if (info.file.status === 'done') {
+  //       message.success(`${info.file.name} file uploaded successfully`);
+  //     } else if (info.file.status === 'error') {
+  //       message.error(`${info.file.name} file upload failed.`);
+  //     }
+  //   },
+  //   onDrop(e) {
+  //     console.log('Dropped files', e.dataTransfer.files);
+  //   }
+  // };
 
   const [form] = Form.useForm();
 
@@ -148,7 +148,7 @@ export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handl
             </Form.Item>
           </div>
         </div>
-        <div className="bottom-content">
+        {/* <div className="bottom-content">
           <Form.Item
             name="pdf"
             rules={[{ required: true, message: 'Veuillez rentrer un scénario!' }]}
@@ -161,7 +161,7 @@ export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handl
               <p className="ant-upload-hint">Types de fichiers pris en charge : .pdf</p>
             </Dragger>
           </Form.Item>
-        </div>
+        </div> */}
       </Form>
     </Modal>
   );
