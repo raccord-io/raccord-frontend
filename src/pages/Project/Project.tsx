@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Project.css';
 import { useParams } from 'react-router-dom';
 import { useProjectQuery } from '../../services/projectApi';
@@ -13,9 +13,7 @@ function Project() {
   const { projectId } = useParams();
   const { data, isLoading, isError } = useProjectQuery(projectId!);
 
-  console.log(data);
-
-  console.log(projectId);
+  const [currentSequenceSelected, setCurrentSequenceSelected] = useState<string>('');
 
   return (
     <div className="main-container">
@@ -23,7 +21,11 @@ function Project() {
       <div className="columns">
         <div className="script-pages-previews"></div>
         <div className="script-container">
-          <ScriptContainer content={text} />
+          <ScriptContainer
+            content={text}
+            projectId={projectId!}
+            currentSequenceSelected={currentSequenceSelected}
+          />
         </div>
         <div className="collapse">
           <SequencesCollapse />
