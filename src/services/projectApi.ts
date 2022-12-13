@@ -23,21 +23,22 @@ export const projectsApi = createApi({
     addProject: builder.mutation<void, Project>({
       query: (project) => ({
         url: '/project',
+        enctype: 'multipart/form-data',
         method: 'POST',
         body: project
       }),
       invalidatesTags: ['Project']
     }),
-    addFile: builder.mutation<void, Project>({
-      query: (project) => ({
-        url: '/upload',
-        method: 'POST',
-        body: project
-      }),
-      invalidatesTags: ['Project']
+    getSequences: builder.query<Project[], string>({
+      query: (projectId) => `/project/${projectId}/sequence`,
+      providesTags: ['Project']
+    }),
+    getSequence: builder.query<Project[], { projectId: string; sequenceId: string }>({
+      query: ({ projectId, sequenceId }) => `/project/${projectId}/sequence/${sequenceId}`,
+      providesTags: ['Project']
     })
   })
 });
 
-export const { useProjectsQuery, useProjectQuery, useAddProjectMutation, useAddFileMutation } =
+export const { useProjectsQuery, useProjectQuery, useAddProjectMutation, useGetSequencesQuery } =
   projectsApi;
