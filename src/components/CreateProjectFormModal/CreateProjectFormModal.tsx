@@ -12,7 +12,7 @@ interface Props {
   handleCancel: () => void;
 }
 
-export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: Props) {
+export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handleCancel }: Props) {
   const { TextArea } = Input;
   const [loadingPicture, setLoadingPicture] = useState<boolean>(false);
   const [imageUrlPicture, setImageUrlPicture] = useState<string>();
@@ -59,19 +59,24 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
 
   const { Dragger } = Upload;
 
-  const [fileUploaded, setFileUploaded] = useState<string>(
-    'Click or drag file to this area to upload'
-  );
-
   /* For the upload of the script */
 
   const types = ['application/pdf'];
 
   const props: UploadProps = {
+    maxCount: 1,
+    accept: '.pdf',
     name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     headers: {
       authorization: 'authorization-text'
+    },
+    beforeUpload(file) {
+      if (!types.includes(file.type)) {
+        message.error(`${file.name} is not a pdf file`);
+        return false;
+      } else {
+        return false;
+      }
     },
     onChange(info) {
       if (info.file.status !== 'uploading') {
@@ -79,16 +84,12 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
       }
       if (info.file.status === 'done') {
         message.success(`${info.file.name} file uploaded successfully`);
-        setFileUploaded(info.file.name);
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
     },
     onDrop(e) {
       console.log('Dropped files', e.dataTransfer.files);
-    },
-    onRemove() {
-      setFileUploaded('Click or drag file to this area to upload');
     }
   };
 
@@ -124,7 +125,6 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               beforeUpload={beforeUploadPicture}
               onChange={handleChangePicture}>
               {imageUrlPicture ? (
@@ -149,24 +149,13 @@ export function CreateProjectFormModal({ isModalOpen, handleOk, handleCancel }: 
           </div>
         </div>
         <div className="bottom-content">
-          <Form.Item name="script" rules={[{ required: false }]}>
-            <Dragger
-              {...props}
-              maxCount={1}
-              showUploadList={false}
-              accept=".pdf"
-              beforeUpload={(file) => {
-                if (!types.includes(file.type)) {
-                  message.error(`${file.name} is not a pdf file`);
-                  return false;
-                } else {
-                  return true;
-                }
-              }}>
+          <Form.Item name="pdf" rules={[{ required: true }]} valuePropName="filelist">
+            <Dragger {...props}>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
-              <p className="ant-upload-text">{fileUploaded}</p>
+              <p className="ant-upload-text">Click or drag file to this area to upload</p>
+              <p className="ant-upload-hint">Supported file types: .pdf</p>
             </Dragger>
           </Form.Item>
         </div>

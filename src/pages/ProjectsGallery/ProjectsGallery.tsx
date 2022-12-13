@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './ProjectsGallery.css';
+import fs from 'fs';
 
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
 import { useProjectsQuery } from '../../services/projectApi';
 import { useAddProjectMutation } from '../../services/projectApi';
-import { useAddFileMutation } from '../../services/projectApi';
 import asset from '../../assets/images/image.png';
 
 import { ProjectCard, CreateProjectFormModal } from '../../components';
@@ -16,7 +16,6 @@ function ProjectsGallery() {
 
   const { data, isLoading, isError } = useProjectsQuery();
   const [addProject, { isLoading: isAdding }] = useAddProjectMutation();
-  const [addFile, { isLoading: isAddingFile }] = useAddFileMutation();
 
   console.log(data);
 
@@ -30,8 +29,6 @@ function ProjectsGallery() {
     setIsModalOpen(false);
     console.log('New project created', value);
     addProject(value);
-    addFile(value);
-    // navigate('/projects' + 'id');
   };
 
   const handleCancel = () => {
