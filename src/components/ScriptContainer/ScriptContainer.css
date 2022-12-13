@@ -1,0 +1,47 @@
+.highlightRed {
+    color: red;
+}
+
+.highlightRed:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.highlightBlue {
+    color: blue;
+}
+
+.highlightBlue:hover {
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.highlightGreen {
+    color: green;
+}
+
+.highlightGreen:hover {
+    background-color: rgba(0, 128, 0, 0.1);
+}
+
+.categories-selection-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.script-page {
+    font-family: 'Courier Prime', monospace;
+    flex-direction: column;
+    width: 90%;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    min-height: 30vh;
+  }
+
+.script-text-container {
+    flex-direction: row;
+    padding: 7%;
+    justify-content: space-between;
+    cursor: pointer;
+}
