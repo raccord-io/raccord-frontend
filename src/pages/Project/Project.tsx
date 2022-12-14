@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useProjectQuery } from '../../services/projectApi';
 import parse from 'html-react-parser';
 import { Button, UploadProps, message, Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { UploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { AddSequenceFormModal } from '../../components/AddSequenceFormModal/AddSequenceFormModal';
 import { useAddSequenceMutation } from '../../services/projectApi';
 import { useGetCategoriesQuery } from '../../services/projectApi';
@@ -107,9 +107,11 @@ function Project() {
             currentSequenceSelected={currentSequenceSelected}
             setCurrentSequenceSelected={setCurrentSequenceSelected}
           />
-          <Button type="primary" onClick={showModal}>
-            Ajouter une séquence
-          </Button>
+          <Button
+            className="add-sequence-button"
+            icon={<PlusOutlined />}
+            type="dashed"
+            onClick={showModal}></Button>
           <AddSequenceFormModal
             isModalOpen={isModalOpen}
             handleOk={handleOk}

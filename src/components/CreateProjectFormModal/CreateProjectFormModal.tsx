@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './CreateProjectFormModal.css';
 
-import { LoadingOutlined, CameraOutlined, InboxOutlined, FileOutlined } from '@ant-design/icons';
+import { LoadingOutlined, CameraOutlined, FileOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import type { UploadChangeParam } from 'antd/es/upload';
 import { Modal, Input, Form, message, Upload } from 'antd';
