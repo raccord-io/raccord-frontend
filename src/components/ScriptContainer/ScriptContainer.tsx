@@ -83,11 +83,7 @@ export const ScriptContainer = ({
       })
     );
     setHighlighter(tmpHighlighter);
-  }, []);
-
-  useEffect(() => {
-    if (highlighter && metadata) highlighter.unserialize(metadata);
-    console.log('metadata', metadata);
+    if (tmpHighlighter && metadata) tmpHighlighter.deserialize(metadata);
   }, []);
 
   // Know if a highlited text is already highlited
