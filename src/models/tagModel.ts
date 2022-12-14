@@ -3,7 +3,7 @@ export type CreateTagDto = {
   categoryId: string;
   sequenceId: string;
   content: string;
-  generalMetaData: string;
+  metadata: string;
 };
 
 export type Tag = {

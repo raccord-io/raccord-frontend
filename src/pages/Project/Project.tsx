@@ -97,6 +97,7 @@ function Project() {
               projectId={projectId!}
               currentSequenceSelected={currentSequenceSelected}
               categories={categories}
+              metadata={project.metadata}
             />
           ) : (
             <Empty description={'Veuillez uploader un scénario'} />

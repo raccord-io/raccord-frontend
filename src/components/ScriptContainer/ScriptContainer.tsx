@@ -26,6 +26,7 @@ interface Props {
   projectId: string;
   currentSequenceSelected: string;
   categories: Category[] | undefined;
+  metadata: string;
 }
 
 export const mapCategoryToClass = new Map([
@@ -38,7 +39,8 @@ export const ScriptContainer = ({
   content,
   projectId,
   currentSequenceSelected,
-  categories
+  categories,
+  metadata
 }: Props) => {
   const [highlighter, setHighlighter] = useState(rangy.createHighlighter);
   const [openModalCategory, setOpenModalCategory] = useState(false);
@@ -81,6 +83,11 @@ export const ScriptContainer = ({
       })
     );
     setHighlighter(tmpHighlighter);
+  }, []);
+
+  useEffect(() => {
+    if (highlighter && metadata) highlighter.unserialize(metadata);
+    console.log('metadata', metadata);
   }, []);
 
   // Know if a highlited text is already highlited
@@ -129,7 +136,7 @@ export const ScriptContainer = ({
       categoryId: selectedUiidCategory,
       sequenceId: currentSequenceSelected,
       content: window.getSelection()?.toString()!,
-      generalMetaData: serialized
+      metadata: serialized
     };
     console.log(tag);
     setOpenModalCategory(false);

@@ -5,4 +5,5 @@ export type Project = {
   updatedAt: string;
   createdAt: string;
   html: string;
+  metadata: string;
 };
