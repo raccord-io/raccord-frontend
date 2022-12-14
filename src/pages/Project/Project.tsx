@@ -7,6 +7,7 @@ import { Button, UploadProps, message, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { AddSequenceFormModal } from '../../components/AddSequenceFormModal/AddSequenceFormModal';
 import { useAddSequenceMutation } from '../../services/projectApi';
+import { useGetCategoriesQuery } from '../../services/projectApi';
 import { Empty } from 'antd';
 
 import { SequencesCollapse } from '../../components';
@@ -14,7 +15,16 @@ import { ScriptContainer } from '../../components/ScriptContainer/ScriptContaine
 
 function Project() {
   const { projectId } = useParams();
-  const { data, isLoading, isError } = useProjectQuery(projectId!);
+  const {
+    data: project,
+    isLoading: isProjectLoading,
+    isError: isProjectError
+  } = useProjectQuery(projectId!);
+  const {
+    data: categories,
+    isLoading: isCategoriesLoading,
+    isError: isCategoriesError
+  } = useGetCategoriesQuery(projectId!);
   const [addSequence] = useAddSequenceMutation();
 
   const types = ['application/pdf'];
@@ -52,14 +62,16 @@ function Project() {
     //CreateSequence()
   };
 
+  console.log('categories', categories);
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const text = parse(data?.html ? data?.html : '');
+  const text = parse(project?.html ? project?.html : '');
 
   const addScript = () => {
-    if (!data?.html) {
+    if (!project?.html) {
       return (
         <Upload {...props}>
           <Button icon={<UploadOutlined />}>Ajouter un scénario</Button>
@@ -73,17 +85,18 @@ function Project() {
   return (
     <div className="main-container">
       <div className="header-page-project">
-        <h1>{data?.name}</h1>
+        <h1>{project?.name}</h1>
         {addScript()}
       </div>
       <div className="columns">
         <div className="script-pages-previews"></div>
         <div className="script-container">
-          {data?.html ? (
+          {project?.html ? (
             <ScriptContainer
               content={text}
               projectId={projectId!}
               currentSequenceSelected={currentSequenceSelected}
+              categories={categories}
             />
           ) : (
             <Empty description={'Veuillez uploader un scénario'} />

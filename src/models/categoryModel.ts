@@ -1,5 +1,6 @@
 export type Category = {
-  _id: string;
-  title: string;
-  tags: string[];
+  color: string;
+  projectId: string;
+  name: string;
+  uuid: string;
 };
