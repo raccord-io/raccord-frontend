@@ -147,7 +147,7 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
         </div>
       </Modal>
       <div className="script-text-container" onMouseUp={onTextHighlighted}>
-        <p>{content}</p>
+        <div className="text-container">{content}</div>
       </div>
     </div>
   );
