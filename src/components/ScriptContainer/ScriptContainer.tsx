@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { Modal } from 'antd';
 import { Radio } from 'antd';
 
-import { Tag } from '../../models/tagModel';
+import { CreateTagDto } from '../../models/tagModel';
 import { Category } from '../../models/categoryModel';
 
 const rangy = require('rangy');
@@ -123,13 +123,13 @@ export const ScriptContainer = ({
   const onOkModalCategory = () => {
     rangy.restoreSelection(currentHighlightedSelection, true);
     highlighter.highlightSelection(mapCategoryToClass.get(selectedCategory));
-    const sel = window.getSelection();
-    console.log(sel?.getRangeAt(0).commonAncestorContainer);
-    const tag: Tag = {
+    const serialized = highlighter.serialize();
+    const tag: CreateTagDto = {
       uuid: uuid(),
       categoryId: selectedUiidCategory,
       sequenceId: currentSequenceSelected,
-      content: window.getSelection()?.toString()!
+      content: window.getSelection()?.toString()!,
+      generalMetaData: serialized
     };
     console.log(tag);
     setOpenModalCategory(false);

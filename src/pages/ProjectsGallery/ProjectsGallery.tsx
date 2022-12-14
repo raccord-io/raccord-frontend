@@ -10,13 +10,17 @@ import asset from '../../assets/images/image.png';
 
 import { ProjectCard, CreateProjectFormModal } from '../../components';
 
+import { Skeleton } from 'antd';
+
 function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data, isLoading, isError } = useProjectsQuery();
+  const {
+    data: projects,
+    isLoading: isLoadingProjects,
+    isError: isErrorProjects
+  } = useProjectsQuery();
   const [addProject, { isLoading: isAdding }] = useAddProjectMutation();
-
-  console.log(data);
 
   const navigate = useNavigate();
 
@@ -49,15 +53,21 @@ function ProjectsGallery() {
         />
       </div>
       <div className="gallery-list">
-        {data?.map((project, key) => (
-          <ProjectCard
-            picture={asset}
-            title={project.name}
-            description={project.description}
-            uuid={project.uuid}
-            key={key}
-          />
-        ))}
+        {isLoadingProjects ? (
+          <Skeleton />
+        ) : (
+          <>
+            {projects?.map((project, key) => (
+              <ProjectCard
+                picture={asset}
+                title={project.name}
+                description={project.description}
+                uuid={project.uuid}
+                key={key}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
