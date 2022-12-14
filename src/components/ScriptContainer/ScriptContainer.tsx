@@ -106,7 +106,7 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
       const sel = window.getSelection();
       const tmpIdToDelete = sel?.getRangeAt(0).commonAncestorContainer.parentElement?.id;
       setCurrentIdToDelete(tmpIdToDelete);
-      console.log(sel?.getRangeAt(0).commonAncestorContainer.parentElement?.id);
+      console.log(sel?.getRangeAt(0).commonAncestorContainer.parentElement);
       highlighter.unhighlightSelection();
     } else highlightText();
   };
@@ -115,14 +115,15 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
     rangy.restoreSelection(currentHighlightedSelection, true);
     highlighter.highlightSelection(mapCategoryToClass.get(selectedCategory));
     const sel = window.getSelection();
-    const id = sel?.getRangeAt(0).commonAncestorContainer.parentElement?.id;
-    setOpenModalCategory(false);
+    console.log(sel?.getRangeAt(0).commonAncestorContainer);
     const tag: Tag = {
-      text: window.getSelection()?.toString()!,
-      sequenceId: currentSequenceSelected,
-      categoryId: selectedCategory,
-      uuid: id!
+      uuid: uuid(),
+      categoryId: uuid(),
+      sequenceId: uuid(),
+      content: window.getSelection()?.toString()!
     };
+    console.log(tag);
+    setOpenModalCategory(false);
     addTag({ projectId, tag });
   };
 

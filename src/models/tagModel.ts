@@ -1,6 +1,6 @@
 export type Tag = {
-  text: string;
-  sequenceId: string;
-  categoryId: string;
   uuid: string;
+  categoryId: string;
+  sequenceId: string;
+  content: string;
 };
