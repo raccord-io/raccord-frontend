@@ -5,6 +5,8 @@ import { useProjectQuery } from '../../services/projectApi';
 import parse from 'html-react-parser';
 import { Button, UploadProps, message, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { AddSequenceFormModal } from '../../components/AddSequenceFormModal/AddSequenceFormModal';
+import { useAddSequenceMutation } from '../../services/projectApi';
 import { Empty } from 'antd';
 
 import { SequencesCollapse } from '../../components';
@@ -13,6 +15,7 @@ import { ScriptContainer } from '../../components/ScriptContainer/ScriptContaine
 function Project() {
   const { projectId } = useParams();
   const { data, isLoading, isError } = useProjectQuery(projectId!);
+  const [addSequence] = useAddSequenceMutation();
 
   const types = ['application/pdf'];
 
@@ -20,7 +23,7 @@ function Project() {
     maxCount: 1,
     accept: '.pdf',
     name: 'file',
-    action: `http://localhost:3000/${projectId}/upload`,
+    action: `http://localhost:3000/project/${projectId}/upload`,
     showUploadList: false,
     headers: {
       authorization: 'authorization-text'
@@ -37,17 +40,34 @@ function Project() {
     }
   };
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOk = (value: any) => {
+    setIsModalOpen(false);
+    console.log(value);
+    addSequence({ projectId: projectId!, name: value.name });
+    //CreateSequence()
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const text = parse(data?.html ? data?.html : '');
 
   const addScript = () => {
-    // if (!data?.html) {
-    return (
-      <Upload {...props}>
-        <Button icon={<UploadOutlined />}>Ajouter un scénario</Button>
-      </Upload>
-    );
-    // }
+    if (!data?.html) {
+      return (
+        <Upload {...props}>
+          <Button icon={<UploadOutlined />}>Ajouter un scénario</Button>
+        </Upload>
+      );
+    }
   };
+
   const [currentSequenceSelected, setCurrentSequenceSelected] = useState<string>('');
 
   return (
@@ -70,7 +90,18 @@ function Project() {
           )}
         </div>
         <div className="collapse">
-          <SequencesCollapse />
+          <SequencesCollapse
+            currentSequenceSelected={currentSequenceSelected}
+            setCurrentSequenceSelected={setCurrentSequenceSelected}
+          />
+          <Button type="primary" onClick={showModal}>
+            Ajouter une séquence
+          </Button>
+          <AddSequenceFormModal
+            isModalOpen={isModalOpen}
+            handleOk={handleOk}
+            handleCancel={handleCancel}
+          />
         </div>
       </div>
       <div className="footer-page-project"></div>

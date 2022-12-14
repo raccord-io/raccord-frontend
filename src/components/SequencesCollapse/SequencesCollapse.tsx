@@ -7,13 +7,20 @@ import { useParams } from 'react-router-dom';
 import { useGetSequencesQuery } from '../../services/projectApi';
 
 import { SequenceCollapse } from '../index';
+import { Id } from '@reduxjs/toolkit/dist/query/tsHelpers';
 
-export function SequencesCollapse() {
+interface Props {
+  currentSequenceSelected: string;
+  setCurrentSequenceSelected: (value: string) => void;
+}
+
+export function SequencesCollapse({ currentSequenceSelected, setCurrentSequenceSelected }: Props) {
   const { Panel } = Collapse;
   const { projectId } = useParams();
   const { data, isLoading, isError } = useGetSequencesQuery(projectId!);
 
-  const testing = (key: any) => {
+  const setSequence = (key: any) => {
+    setCurrentSequenceSelected(key);
     console.log(key);
   };
 
@@ -34,7 +41,7 @@ export function SequencesCollapse() {
       accordion
       key={'1'}
       bordered={false}
-      onChange={testing}
+      onChange={setSequence}
       defaultActiveKey={['1']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
       className="site-collapse-custom-collapse">

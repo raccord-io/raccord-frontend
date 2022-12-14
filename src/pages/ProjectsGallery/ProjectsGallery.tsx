@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './ProjectsGallery.css';
-import fs from 'fs';
 
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';

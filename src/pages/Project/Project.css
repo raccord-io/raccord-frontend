@@ -48,7 +48,4 @@
 
 .bold-character {
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }
