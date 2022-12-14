@@ -8,6 +8,7 @@ import { Modal } from 'antd';
 import { Radio } from 'antd';
 
 import { Tag } from '../../models/tagModel';
+import { Category } from '../../models/categoryModel';
 
 const rangy = require('rangy');
 
@@ -24,18 +25,25 @@ interface Props {
   content: any;
   projectId: string;
   currentSequenceSelected: string;
+  categories: Category[] | undefined;
 }
 
 export const mapCategoryToClass = new Map([
   ['Lieux', 'highlightBlue'],
-  ['Décors', 'highlightRed'],
-  ['Accessoires', 'highlightGreen']
+  ['Personnages', 'highlightRed'],
+  ['Décor', 'highlightGreen']
 ]);
 
-export const ScriptContainer = ({ content, projectId, currentSequenceSelected }: Props) => {
+export const ScriptContainer = ({
+  content,
+  projectId,
+  currentSequenceSelected,
+  categories
+}: Props) => {
   const [highlighter, setHighlighter] = useState(rangy.createHighlighter);
   const [openModalCategory, setOpenModalCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedUiidCategory, setSelectedUiidCategory] = useState('');
   const [currentHighlightedSelection, setCurrentHighlightedSelection] = useState();
   const [currentIdToDelete, setCurrentIdToDelete] = useState<string | undefined>('');
 
@@ -111,6 +119,7 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
     } else highlightText();
   };
 
+  // Function call when have choose a category and highlited a text
   const onOkModalCategory = () => {
     rangy.restoreSelection(currentHighlightedSelection, true);
     highlighter.highlightSelection(mapCategoryToClass.get(selectedCategory));
@@ -118,8 +127,8 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
     console.log(sel?.getRangeAt(0).commonAncestorContainer);
     const tag: Tag = {
       uuid: uuid(),
-      categoryId: uuid(),
-      sequenceId: uuid(),
+      categoryId: selectedUiidCategory,
+      sequenceId: currentSequenceSelected,
       content: window.getSelection()?.toString()!
     };
     console.log(tag);
@@ -128,7 +137,8 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
   };
 
   const onChangeRadioButton = (value: any) => {
-    setSelectedCategory(value.target.value);
+    setSelectedCategory(value.target.value.name);
+    setSelectedUiidCategory(value.target.value.uuid);
   };
 
   return (
@@ -141,9 +151,13 @@ export const ScriptContainer = ({ content, projectId, currentSequenceSelected }:
         width="20vw">
         <div className="categories-selection-container">
           <Radio.Group onChange={onChangeRadioButton} defaultValue={selectedCategory}>
-            <Radio.Button value="Lieux">Lieux</Radio.Button>
-            <Radio.Button value="Décors">Décor</Radio.Button>
-            <Radio.Button value="Accessoires">Accessoires</Radio.Button>
+            {categories?.map((value: Category, key) => {
+              return (
+                <Radio.Button key={key} value={value}>
+                  {value.name}
+                </Radio.Button>
+              );
+            })}
           </Radio.Group>
         </div>
       </Modal>
