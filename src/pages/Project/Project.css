@@ -49,3 +49,10 @@
 .bold-character {
   font-weight: bold;
 }
+
+.add-sequence-button {
+  margin-top: 5%;
+  width: 100%!important;
+  align-items: center;
+  justify-content: center;
+}
