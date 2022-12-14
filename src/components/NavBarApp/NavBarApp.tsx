@@ -4,6 +4,7 @@ import { theme } from '../../constants/theme';
 
 import { Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 import logo from '../../assets/images/logo.png';
 
@@ -50,7 +51,7 @@ export function NavBarApp() {
         </a>
       </div> */}
       <Dropdown menu={{ items }} placement="bottomRight" arrow trigger={['click']}>
-        <Button>Clément</Button>
+        <UserOutlined style={{ fontSize: '2vw' }} />
       </Dropdown>
     </div>
   );
