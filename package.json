@@ -16,7 +16,7 @@
     "async-mutex": "^0.4.0",
     "axios": "^1.2.1",
     "bootstrap": "^5.1.3",
-    "framer-motion": "^7.6.19",
+    "framer-motion": "^7.10.0",
     "html-react-parser": "^3.0.4",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

@@ -32,7 +32,7 @@ interface Props {
 export const mapCategoryToClass = new Map([
   ['Lieux', 'highlightBlue'],
   ['Personnages', 'highlightRed'],
-  ['Décor', 'highlightGreen']
+  ['Décors', 'highlightGreen']
 ]);
 
 export const ScriptContainer = ({
