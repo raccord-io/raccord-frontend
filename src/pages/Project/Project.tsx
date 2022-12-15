@@ -80,6 +80,9 @@ function Project() {
     }
   };
 
+  // const displayCollapse = () => {
+  //   if (project?.html) {
+
   const [currentSequenceSelected, setCurrentSequenceSelected] = useState<string>('');
 
   return (
@@ -104,20 +107,26 @@ function Project() {
           )}
         </div>
         <div className="collapse">
-          <SequencesCollapse
-            currentSequenceSelected={currentSequenceSelected}
-            setCurrentSequenceSelected={setCurrentSequenceSelected}
-          />
-          <Button
-            className="add-sequence-button"
-            icon={<PlusOutlined />}
-            type="dashed"
-            onClick={showModal}></Button>
-          <AddSequenceFormModal
-            isModalOpen={isModalOpen}
-            handleOk={handleOk}
-            handleCancel={handleCancel}
-          />
+          {project?.html ? (
+            <div>
+              <SequencesCollapse
+                currentSequenceSelected={currentSequenceSelected}
+                setCurrentSequenceSelected={setCurrentSequenceSelected}
+              />
+              <Button
+                className="add-sequence-button"
+                icon={<PlusOutlined />}
+                type="dashed"
+                onClick={showModal}></Button>
+              <AddSequenceFormModal
+                isModalOpen={isModalOpen}
+                handleOk={handleOk}
+                handleCancel={handleCancel}
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       <div className="footer-page-project"></div>
