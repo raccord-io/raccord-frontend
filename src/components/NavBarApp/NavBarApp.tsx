@@ -2,7 +2,7 @@ import React from 'react';
 import './NavBarApp.css';
 import { theme } from '../../constants/theme';
 
-import { Button, Dropdown } from 'antd';
+import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -45,13 +45,13 @@ export function NavBarApp() {
       <div className="NavBar-logo">
         <img className="logo" src={logo} alt="Fast Clap logo" />
       </div>
-      {/* <div className="NavBar-menu">
-        <a className="NavBar-menu-item" href="#">
-          Projets
+      <div className="NavBar-menu">
+        <a className="NavBar-menu-item" href="/projects">
+          Mes Projets
         </a>
-      </div> */}
+      </div>
       <Dropdown menu={{ items }} placement="bottomRight" arrow trigger={['click']}>
-        <UserOutlined style={{ fontSize: '2vw' }} />
+        <UserOutlined style={{ fontSize: '2vw', color: 'white' }} />
       </Dropdown>
     </div>
   );

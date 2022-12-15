@@ -7,11 +7,17 @@ import ProjectsGallery from './pages/ProjectsGallery/ProjectsGallery';
 import Project from './pages/Project/Project';
 
 import { NavBarApp } from './components/index';
+import HomePage from './pages/HomePage/HomePage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <NavBar />
+    element: (
+      <div>
+        <NavBar />
+        <HomePage />
+      </div>
+    )
   },
   {
     path: '/projects',

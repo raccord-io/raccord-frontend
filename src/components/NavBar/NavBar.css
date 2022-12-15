@@ -31,11 +31,11 @@
 .NavBar-menu-item {
   font-size: 14px;
   font-weight: 500;
-  color: #000;
+  color: white !important;
   text-decoration: none;
 }
 
 .NavBar-menu-item:hover {
-  color: #000;
+  color: white !important;
   text-decoration: underline;
 }

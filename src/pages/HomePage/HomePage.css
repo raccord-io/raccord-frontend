@@ -1,0 +1,36 @@
+.home-page-container {
+    height: 93vh;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+}
+
+.image-logo {
+    margin: 10vw 0 0 0
+}
+
+.buttons-container {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-little-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.button-account {
+    background-color: red;
+    color: white;
+    border-color: red;
+
+}

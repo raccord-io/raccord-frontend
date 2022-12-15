@@ -23,13 +23,13 @@
 .NavBar-menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 400px;
 }
 
 .NavBar-menu-item {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #000;
   text-decoration: none;

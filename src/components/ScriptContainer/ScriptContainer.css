@@ -49,3 +49,12 @@
     justify-content: space-between;
     cursor: pointer;
 }
+
+
+.bold-character {
+    font-weight: bold;
+}
+
+.bold-title {
+    font-weight: bold;
+}

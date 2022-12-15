@@ -12,7 +12,7 @@ export function NavBar() {
       <div className="NavBar-logo">
         <img className="logo" src={logo} alt="Fast Clap logo" />
       </div>
-      <div className="NavBar-menu">
+      <div className="NavBar-menu" style={{ justifyContent: 'space-between' }}>
         <a className="NavBar-menu-item" href="#">
           Accueil
         </a>
@@ -23,7 +23,7 @@ export function NavBar() {
           Contact
         </a>
       </div>
-      <Button type="primary" href="/projects">
+      <Button type="dashed" href="/projects">
         Se Connecter
       </Button>
     </div>

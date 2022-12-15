@@ -6,7 +6,8 @@ const themeConfig = {
       black: '#000',
       white: '#fff'
     },
-    primary: '#738DA7',
+    primary: 'rgba(31,30,30,255)',
+    secondary: 'rgba(31, 30, 30, 0.8)',
     success: green[6],
     error: red[5],
     pink: '#ff1890',

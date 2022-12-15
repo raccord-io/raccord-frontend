@@ -12,6 +12,7 @@ import asset from '../../assets/images/image.png';
 import { ProjectCard, CreateProjectFormModal } from '../../components';
 
 import { Skeleton } from 'antd';
+import { theme } from '../../constants/theme';
 
 function ProjectsGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,12 +42,13 @@ function ProjectsGallery() {
   return (
     <div className="project-gallery">
       <div className="header">
-        <h1>Projets</h1>
+        <h1>Mes projets</h1>
         <Button
           className="add-project-button"
           icon={<PlusOutlined />}
           type="dashed"
-          onClick={showModal}>
+          onClick={showModal}
+          size="large">
           Ajouter un projet
         </Button>
         <CreateProjectFormModal
