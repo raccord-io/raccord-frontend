@@ -19,14 +19,14 @@ export function SequencesCollapse({ currentSequenceSelected, setCurrentSequenceS
   const { data: sequencesName } = useGetSequencesNameQuery(projectId!);
 
   const setSequence = (key: any) => {
-    setCurrentSequenceSelected(key);
+    key && setCurrentSequenceSelected(key);
   };
 
   const sequences = (
     <>
-      {sequencesName?.map((item) => {
+      {sequencesName?.map((item, key) => {
         return (
-          <Panel header={item.name} key={item.uuid} className="site-collapse-custom-collapse">
+          <Panel header={item.name} key={key} className="site-collapse-custom-collapse">
             <SequenceCollapse keyId={item.uuid} />
           </Panel>
         );
@@ -40,7 +40,7 @@ export function SequencesCollapse({ currentSequenceSelected, setCurrentSequenceS
       key={'1'}
       bordered={false}
       onChange={setSequence}
-      defaultActiveKey={['1']}
+      defaultActiveKey={['0']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
       className="site-collapse-custom-collapse">
       {sequences}
