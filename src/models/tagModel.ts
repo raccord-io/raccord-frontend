@@ -1,8 +1,12 @@
 export type CreateTagDto = {
-  uuid: string;
+  uuid: string | undefined;
   categoryId: string;
   sequenceId: string;
   content: string;
+  metadata: string;
+};
+
+export type DeleteTagDto = {
   metadata: string;
 };
 

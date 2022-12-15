@@ -24,9 +24,9 @@ export function SequencesCollapse({ currentSequenceSelected, setCurrentSequenceS
 
   const sequences = (
     <>
-      {sequencesName?.map((item, key) => {
+      {sequencesName?.map((item) => {
         return (
-          <Panel header={item.name} key={key} className="site-collapse-custom-collapse">
+          <Panel header={item.name} key={item.uuid} className="site-collapse-custom-collapse">
             <SequenceCollapse keyId={item.uuid} />
           </Panel>
         );

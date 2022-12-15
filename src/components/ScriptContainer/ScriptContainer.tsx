@@ -7,13 +7,13 @@ import { useEffect } from 'react';
 import { Modal } from 'antd';
 import { Radio } from 'antd';
 
-import { CreateTagDto } from '../../models/tagModel';
+import { CreateTagDto, DeleteTagDto } from '../../models/tagModel';
 import { Category } from '../../models/categoryModel';
 
 const rangy = require('rangy');
 
 import { v4 as uuid } from 'uuid';
-import { useAddTagMutation } from '../../services/projectApi';
+import { useAddTagMutation, useDeleteTagMutation } from '../../services/projectApi';
 
 import 'rangy/lib/rangy-classapplier';
 import 'rangy/lib/rangy-highlighter';
@@ -50,6 +50,7 @@ export const ScriptContainer = ({
   const [currentIdToDelete, setCurrentIdToDelete] = useState<string | undefined>('');
 
   const [addTag] = useAddTagMutation();
+  const [deleteTag] = useDeleteTagMutation();
 
   // Use effect to initialize the highlighter
   useEffect(() => {
@@ -111,23 +112,42 @@ export const ScriptContainer = ({
     }
   };
 
+  const unhighlightText = () => {
+    // Get the id of the tag to delete
+    const sel = window.getSelection();
+    const tmpIdToDelete = sel?.getRangeAt(0).commonAncestorContainer;
+    const tagId = tmpIdToDelete?.parentElement?.id;
+
+    const tag: DeleteTagDto = {
+      metadata: highlighter.serialize()
+    };
+    highlighter.unhighlightSelection();
+
+    deleteTag({ projectId, tagId, tag });
+  };
+
   // Function call when a text is higghlighted
   const onTextHighlighted = () => {
     if (isAlreadyHighlighted()) {
-      const sel = window.getSelection();
-      const tmpIdToDelete = sel?.getRangeAt(0).commonAncestorContainer.parentElement?.id;
-      setCurrentIdToDelete(tmpIdToDelete);
-      highlighter.unhighlightSelection();
+      unhighlightText();
     } else highlightText();
   };
 
   // Function call when have choose a category and highlited a text
   const onOkModalCategory = () => {
     rangy.restoreSelection(currentHighlightedSelection, true);
+    // Highlight with the good className
     highlighter.highlightSelection(mapCategoryToClass.get(selectedCategory));
+
+    // Get the id of the highlighted element
+    const sel = window.getSelection()?.getRangeAt(0);
+    const newElem = sel?.endContainer?.parentElement;
+
+    // Get the metadata
     const serialized = highlighter.serialize();
+
     const tag: CreateTagDto = {
-      uuid: uuid(),
+      uuid: newElem?.id,
       categoryId: selectedUiidCategory,
       sequenceId: currentSequenceSelected,
       content: window.getSelection()?.toString()!,

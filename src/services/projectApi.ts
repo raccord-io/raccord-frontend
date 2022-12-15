@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Project } from '../models/projectModel';
-import { CreateTagDto } from '../models/tagModel';
+import { CreateTagDto, DeleteTagDto } from '../models/tagModel';
 import { Category } from '../models/categoryModel';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
@@ -58,10 +58,14 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: ['Project', 'Tag', 'Sequence']
     }),
-    deleteTag: builder.mutation<void, { projectId: string; tagId: string }>({
-      query: ({ projectId, tagId }) => ({
+    deleteTag: builder.mutation<
+      void,
+      { projectId: string; tagId: string | undefined; tag: DeleteTagDto }
+    >({
+      query: ({ projectId, tagId, tag }) => ({
         url: `/project/${projectId}/tag/${tagId}`,
-        method: 'DELETE'
+        method: 'DELETE',
+        body: tag
       }),
       invalidatesTags: ['Project', 'Tag', 'Sequence']
     }),
@@ -80,5 +84,6 @@ export const {
   useGetSequencesNameQuery,
   useGetSequenceQuery,
   useAddTagMutation,
+  useDeleteTagMutation,
   useGetCategoriesQuery
 } = projectsApi;
