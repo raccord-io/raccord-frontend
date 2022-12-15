@@ -9,7 +9,7 @@ console.log(API_ENDPOINT);
 
 export const projectsApi = createApi({
   reducerPath: 'projectsApi',
-  tagTypes: ['Project', 'Tag'],
+  tagTypes: ['Project', 'Tag', 'Sequence'],
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_ENDPOINT}`
   }),
@@ -47,7 +47,8 @@ export const projectsApi = createApi({
       providesTags: ['Project']
     }),
     getSequence: builder.query<any, { projectId: string; sequenceId: string }>({
-      query: ({ projectId, sequenceId }) => `/project/${projectId}/sequence/${sequenceId}`
+      query: ({ projectId, sequenceId }) => `/project/${projectId}/sequence/${sequenceId}`,
+      providesTags: ['Sequence']
     }),
     addTag: builder.mutation<void, { projectId: string; tag: CreateTagDto }>({
       query: ({ projectId, tag }) => ({
@@ -55,13 +56,14 @@ export const projectsApi = createApi({
         method: 'POST',
         body: tag
       }),
-      invalidatesTags: ['Project', 'Tag']
+      invalidatesTags: ['Project', 'Tag', 'Sequence']
     }),
     deleteTag: builder.mutation<void, { projectId: string; tagId: string }>({
       query: ({ projectId, tagId }) => ({
         url: `/project/${projectId}/tag/${tagId}`,
         method: 'DELETE'
-      })
+      }),
+      invalidatesTags: ['Project', 'Tag', 'Sequence']
     }),
     getCategories: builder.query<Category[], string>({
       query: (projectId) => ({ url: `project/${projectId}/category`, methode: 'GET' })
