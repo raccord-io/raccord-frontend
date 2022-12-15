@@ -3,6 +3,7 @@ import './ProjectsGallery.css';
 
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 import { useProjectsQuery } from '../../services/projectApi';
 import { useAddProjectMutation } from '../../services/projectApi';
@@ -43,8 +44,12 @@ function ProjectsGallery() {
     <div className="project-gallery">
       <div className="header">
         <h1>Projets</h1>
-        <Button type="primary" className="create-project-btn" onClick={showModal}>
-          Créer un Projet
+        <Button
+          className="add-project-button"
+          icon={<PlusOutlined />}
+          type="dashed"
+          onClick={showModal}>
+          Ajouter un projet
         </Button>
         <CreateProjectFormModal
           isModalOpen={isModalOpen}

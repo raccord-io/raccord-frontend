@@ -20,6 +20,10 @@
   grid-gap: 11.5vh 7.2vw;
 }
 
+.add-project-button {
+  font-size: 1vw;
+}
+
 @media (width < 1150px) {
   .project-gallery .gallery-list {
     grid-template-columns: repeat(2, fit-content(100%));
