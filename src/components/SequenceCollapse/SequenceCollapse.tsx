@@ -32,10 +32,14 @@ export function SequenceCollapse({ keyId }: Props) {
       className="site-collapse-custom-collapse">
       {sequenceContent?.categories.map((item: any) => {
         return (
-          <Panel header={item.name} key={item.uuid} className="site-collapse-custom-panel">
+          <Panel
+            style={{ backgroundColor: item.color }}
+            header={item.name}
+            key={item.uuid}
+            className="site-collapse-custom-panel">
             {item.tags.map((tag: any) => {
               return (
-                <Tag color="magenta" key={tag.uuid}>
+                <Tag style={{ backgroundColor: item.color }} key={tag.uuid}>
                   {tag.content}
                 </Tag>
               );
