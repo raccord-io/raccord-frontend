@@ -31,9 +31,7 @@ function ProjectsGallery() {
 
   const handleOk = (value: any) => {
     setIsModalOpen(false);
-    console.log('New project created', value);
     const result = addProject(value);
-    console.log(result);
   };
 
   const handleCancel = () => {

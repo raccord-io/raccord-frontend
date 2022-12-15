@@ -57,12 +57,8 @@ function Project() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOk = (value: any) => {
     setIsModalOpen(false);
-    console.log(value);
     addSequence({ projectId: projectId!, name: value.name });
-    //CreateSequence()
   };
-
-  console.log('categories', categories);
 
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -80,9 +76,6 @@ function Project() {
     }
   };
 
-  // const displayCollapse = () => {
-  //   if (project?.html) {
-
   const [currentSequenceSelected, setCurrentSequenceSelected] = useState<string>('');
 
   return (
@@ -94,7 +87,7 @@ function Project() {
       <div className="columns">
         <div className="script-pages-previews"></div>
         <div className="script-container">
-          {project?.html ? (
+          {/* {project?.html ? (
             <ScriptContainer
               content={text}
               projectId={projectId!}
@@ -104,7 +97,7 @@ function Project() {
             />
           ) : (
             <Empty description={'Veuillez uploader un scénario'} />
-          )}
+          )} */}
         </div>
         <div className="collapse">
           {project?.html ? (
