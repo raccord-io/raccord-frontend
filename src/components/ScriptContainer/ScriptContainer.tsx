@@ -117,7 +117,6 @@ export const ScriptContainer = ({
       const sel = window.getSelection();
       const tmpIdToDelete = sel?.getRangeAt(0).commonAncestorContainer.parentElement?.id;
       setCurrentIdToDelete(tmpIdToDelete);
-      console.log(sel?.getRangeAt(0).commonAncestorContainer.parentElement);
       highlighter.unhighlightSelection();
     } else highlightText();
   };
@@ -134,7 +133,6 @@ export const ScriptContainer = ({
       content: window.getSelection()?.toString()!,
       metadata: serialized
     };
-    console.log(tag);
     setOpenModalCategory(false);
     addTag({ projectId, tag });
   };

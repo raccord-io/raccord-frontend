@@ -42,13 +42,12 @@ export const projectsApi = createApi({
       }),
       invalidatesTags: ['Project']
     }),
-    getSequences: builder.query<Project[], string>({
+    getSequencesName: builder.query<Project[], string>({
       query: (projectId) => `/project/${projectId}/sequence`,
       providesTags: ['Project']
     }),
-    getSequence: builder.query<Project[], { projectId: string; sequenceId: string }>({
-      query: ({ projectId, sequenceId }) => `/project/${projectId}/sequence/${sequenceId}`,
-      providesTags: ['Project']
+    getSequence: builder.query<any, { projectId: string; sequenceId: string }>({
+      query: ({ projectId, sequenceId }) => `/project/${projectId}/sequence/${sequenceId}`
     }),
     addTag: builder.mutation<void, { projectId: string; tag: CreateTagDto }>({
       query: ({ projectId, tag }) => ({
@@ -76,7 +75,7 @@ export const {
   useAddProjectMutation,
   useAddFileQuery,
   useAddSequenceMutation,
-  useGetSequencesQuery,
+  useGetSequencesNameQuery,
   useGetSequenceQuery,
   useAddTagMutation,
   useGetCategoriesQuery

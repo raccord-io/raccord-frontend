@@ -3,6 +3,8 @@ import './SequenceCollapse.css';
 
 import { Collapse, Tag } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
+import { useGetSequenceQuery } from '../../services/projectApi';
+import { useParams } from 'react-router-dom';
 
 interface Props {
   keyId: string;
@@ -13,23 +15,28 @@ const categoryInfos = [
   { category: 'Accessoire', tags: ['Boule', 'Ballon'] }
 ];
 
-export function SequenceCollapse(props: Props) {
+export function SequenceCollapse({ keyId }: Props) {
   const { Panel } = Collapse;
+  const { projectId } = useParams();
+  const { data: sequenceContent } = useGetSequenceQuery({
+    projectId: projectId!,
+    sequenceId: keyId
+  });
 
   return (
     <Collapse
-      key={props.keyId}
+      key={keyId}
       bordered={false}
       defaultActiveKey={['1']}
       expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
       className="site-collapse-custom-collapse">
-      {categoryInfos.map((item) => {
+      {sequenceContent?.categories.map((item: any) => {
         return (
-          <Panel header={item.category} key={item.category} className="site-collapse-custom-panel">
-            {item.tags.map((tag, index) => {
+          <Panel header={item.name} key={item.uuid} className="site-collapse-custom-panel">
+            {item.tags.map((tag: any) => {
               return (
-                <Tag color="magenta" key={index}>
-                  {tag}
+                <Tag color="magenta" key={tag.uuid}>
+                  {tag.content}
                 </Tag>
               );
             })}

@@ -4,10 +4,9 @@ import './SequencesCollapse.css';
 import { Collapse } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
-import { useGetSequencesQuery } from '../../services/projectApi';
+import { useGetSequencesNameQuery, useGetSequenceQuery } from '../../services/projectApi';
 
 import { SequenceCollapse } from '../index';
-import { Id } from '@reduxjs/toolkit/dist/query/tsHelpers';
 
 interface Props {
   currentSequenceSelected: string;
@@ -17,19 +16,18 @@ interface Props {
 export function SequencesCollapse({ currentSequenceSelected, setCurrentSequenceSelected }: Props) {
   const { Panel } = Collapse;
   const { projectId } = useParams();
-  const { data, isLoading, isError } = useGetSequencesQuery(projectId!);
+  const { data: sequencesName } = useGetSequencesNameQuery(projectId!);
 
   const setSequence = (key: any) => {
     setCurrentSequenceSelected(key);
-    console.log(key);
   };
 
   const sequences = (
     <>
-      {data?.map((item) => {
+      {sequencesName?.map((item) => {
         return (
           <Panel header={item.name} key={item.uuid} className="site-collapse-custom-collapse">
-            <SequenceCollapse keyId={'1'} />
+            <SequenceCollapse keyId={item.uuid} />
           </Panel>
         );
       })}
