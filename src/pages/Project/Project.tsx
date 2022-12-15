@@ -87,7 +87,7 @@ function Project() {
       <div className="columns">
         <div className="script-pages-previews"></div>
         <div className="script-container">
-          {/* {project?.html ? (
+          {project?.html ? (
             <ScriptContainer
               content={text}
               projectId={projectId!}
@@ -97,7 +97,7 @@ function Project() {
             />
           ) : (
             <Empty description={'Veuillez uploader un scénario'} />
-          )} */}
+          )}
         </div>
         <div className="collapse">
           {project?.html ? (
