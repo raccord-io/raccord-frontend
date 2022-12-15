@@ -18,7 +18,8 @@ function Project() {
   const {
     data: project,
     isLoading: isProjectLoading,
-    isError: isProjectError
+    isError: isProjectError,
+    refetch: refetchProject
   } = useProjectQuery(projectId!);
   const {
     data: categories,
@@ -44,6 +45,7 @@ function Project() {
       }
       if (info.file.status === 'done') {
         message.success(`${info.file.name} file uploaded successfully`);
+        refetchProject();
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
