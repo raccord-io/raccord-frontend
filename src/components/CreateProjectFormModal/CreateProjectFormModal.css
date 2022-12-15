@@ -17,6 +17,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  justify-content: center;
+  width: 100%;
 }
 
 .ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select {

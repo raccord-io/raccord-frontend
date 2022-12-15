@@ -119,7 +119,7 @@ export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handl
         name="form_in_modal"
         initialValues={{ modifier: 'public' }}>
         <div className="top-content">
-          <div className="top-left-content">
+          {/* <div className="top-left-content">
             <Upload
               name="avatar"
               listType="picture-card"
@@ -133,7 +133,7 @@ export function CreateProjectFormModal(this: any, { isModalOpen, handleOk, handl
                 uploadPicture
               )}
             </Upload>
-          </div>
+          </div> */}
           <div className="top-right-content">
             <Form.Item
               name="name"

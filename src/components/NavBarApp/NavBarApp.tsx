@@ -5,6 +5,7 @@ import { theme } from '../../constants/theme';
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/images/logo.png';
 
@@ -40,10 +41,11 @@ const items: MenuProps['items'] = [
 ];
 
 export function NavBarApp() {
+  const navigation = useNavigate();
   return (
     <div className="NavBar" style={{ backgroundColor: theme.palette.primary }}>
       <div className="NavBar-logo">
-        <img className="logo" src={logo} alt="Fast Clap logo" />
+        <img className="logo" src={logo} alt="Fast Clap logo" onClick={() => navigation('/')} />
       </div>
       <div className="NavBar-menu">
         <a className="NavBar-menu-item" href="/projects">
