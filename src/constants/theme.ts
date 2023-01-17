@@ -6,29 +6,15 @@ const themeConfig = {
       black: '#000',
       white: '#fff'
     },
-    primary: 'rgba(31,30,30,255)',
+    primary: 'rgba(0, 76, 106, 255)',
     secondary: 'rgba(31, 30, 30, 0.8)',
     success: green[6],
     error: red[5],
     pink: '#ff1890',
-    green: green,
-    red: red,
-    background: '#E9E9E9',
-    divider: 'rgba(0, 0, 0, 0.12)',
-    grey: ['#f0f2f5', '#d8d9dc', '#c0c1c4'],
-    orange: ['#ff5f1f', '#fa541c', '#ff8718'],
-    blue: [
-      '#e6f7ff',
-      '#bae7ff',
-      '#91d5ff',
-      '#69c0ff',
-      '#40a9ff',
-      '#1890ff',
-      '#096dd9',
-      '#0050b3',
-      '#003a8c',
-      '#002766'
-    ]
+    blue: 'rgba(0, 76, 106, 255)',
+    green: 'rgba(56, 181, 72)',
+    red: 'rgba(239, 56, 66)',
+    grey: 'rgba(237, 231, 235)'
   },
   spacingUnit: 8
 };

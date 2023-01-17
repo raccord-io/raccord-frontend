@@ -1,5 +1,5 @@
 .home-page-container {
-    height: 93vh;
+    height: 80vh;
 }
 
 .image-container {
@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 20%;
+    margin: 0px 0px 5vw 0px
 }
 
 .button-account {

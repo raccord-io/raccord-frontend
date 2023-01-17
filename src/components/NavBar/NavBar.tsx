@@ -5,10 +5,11 @@ import { theme } from '../../constants/theme';
 import { Button } from 'antd';
 
 import logo from '../../assets/images/logo.png';
+import { RectangularBtn } from '../Rectangular-Btn/Rectangular-Btn';
 
 export function NavBar() {
   return (
-    <div className="NavBar" style={{ backgroundColor: theme.palette.primary }}>
+    <div className="NavBar" style={{ backgroundColor: theme.palette.common.white }}>
       <div className="NavBar-logo">
         <img className="logo" src={logo} alt="Fast Clap logo" />
       </div>
@@ -23,9 +24,7 @@ export function NavBar() {
           Contact
         </a>
       </div>
-      <Button type="dashed" href="/projects">
-        Se Connecter
-      </Button>
+      <RectangularBtn color={theme.palette.green}>Se connecter</RectangularBtn>
     </div>
   );
 }

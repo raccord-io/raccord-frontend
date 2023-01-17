@@ -6,12 +6,13 @@ import { Button } from 'antd';
 
 type Props = {
   children: string;
+  color: string;
 };
 
 export function RectangularBtn(props: Props) {
   return (
     <Link to="#">
-      <Button type="primary" className="rectangular-btn">
+      <Button type="primary" className="rectangular-btn" style={{ backgroundColor: props.color }}>
         {props.children}
       </Button>
     </Link>

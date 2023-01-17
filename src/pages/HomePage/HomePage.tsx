@@ -3,15 +3,17 @@ import { theme } from '../../constants/theme';
 import logo from '../../assets/images/logo.png';
 import { Button } from 'antd';
 import { motion } from 'framer-motion';
+import { RectangularBtn } from '../../components';
 
 export const HomePage = () => {
   return (
-    <div style={{ backgroundColor: theme.palette.primary }} className="home-page-container">
+    <div style={{ backgroundColor: theme.palette.common.white }} className="home-page-container">
       <motion.div className="image-container">
         <motion.div
           animate={{
             rotate: [0, 9, -9, 0]
           }}
+          drag
           transition={{
             duration: 1,
             ease: 'easeInOut',
@@ -20,7 +22,9 @@ export const HomePage = () => {
             dumping: 1,
             stiffness: 1
           }}>
-          <img className="image-logo" src={logo}></img>
+          <div style={{ fontSize: '100px', margin: '10vw 0px 0px 0px' }}>
+            Serein du debut à la fin
+          </div>
         </motion.div>
       </motion.div>
       <div className="buttons-container">
@@ -40,12 +44,8 @@ export const HomePage = () => {
             bottom: 50
           }}
           className="buttons-little-container">
-          <Button size="large" className="button-account">
-            Créer un compte
-          </Button>
-          <Button size="large" className="button-demo">
-            Voir la démo
-          </Button>
+          <RectangularBtn color={theme.palette.blue}>Créer un compte</RectangularBtn>
+          <RectangularBtn color={theme.palette.blue}>Voir la démo</RectangularBtn>
         </motion.div>
       </div>
     </div>
