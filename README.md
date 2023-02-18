@@ -1,6 +1,6 @@
-# [PROJECT'S NAME]
+# Raccord Frontend
 
-[Project's description]
+This is the front part of the Raccord Website
 
 ## How does it work?
 
